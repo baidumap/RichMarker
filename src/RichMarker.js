@@ -1095,6 +1095,11 @@ var BMapLib = window.BMapLib = BMapLib || {};
         if (!dom) {
             return;
         }
+        //删除_setEventDispatch中残留的监听器
+        var events = ['onclick','ontouchend','ondblclick','onmouseover','onmouseout','onmouseup','ondragging','onmousedown'];
+        for (var i=0;i<events.length;i++){
+            baidu.un(dom,events[i]);
+        }
         var attrs = dom.attributes,
             name = "";
         if (attrs) {
